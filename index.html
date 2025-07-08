@@ -8,6 +8,21 @@
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
     <body>
+        <div class="container">
+            <h1>Minha lista de tarefas</h1>
+
+            <label for="tarefa">Tarefa: </label>
+            <input type="text" name="tarefa" id="tarefa" min="1" required placeholder="Lavar louça, etc">
+
+            <button id="adicionarTarefa">Adicionar</button>
+        </div>
+
+        <div id="containerResultados">
+            <ul id="listaTarefas"></ul>
+
+            <p id="contadorDeTarefas"></p>
+        </div>
+
         <script src="script.js" type="text/javascript"></script>
     </body>
 </html>
