@@ -12,6 +12,11 @@ botaoAdicionarTarefa.addEventListener("click", function () {
         mensagemErro.textContent = ""
         const tarefa = document.createElement("li")
         tarefa.textContent = inputTarefa.value
+
+        tarefa.addEventListener("click", function() {
+        tarefa.classList.toggle("concluida")
+    })
+
         listaTarefas.appendChild(tarefa)
 
         tarefas.push(inputTarefa.value)
