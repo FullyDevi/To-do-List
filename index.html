@@ -11,14 +11,16 @@
         <div class="container">
             <h1>Minha lista de tarefas</h1>
 
-            <label for="tarefa">Tarefa: </label>
-            <input type="text" name="tarefa" id="tarefa" min="1" required placeholder="Lavar louça, etc">
+            <label for="inputTarefa">Tarefa: </label>
+            <input type="text" name="inputTarefa" id="inputTarefa" min="1" required placeholder="Lavar louça, etc">
 
-            <button id="adicionarTarefa">Adicionar</button>
+            <button id="botaoAdicionarTarefa">Adicionar</button>
         </div>
 
         <div id="containerResultados">
             <ul id="listaTarefas"></ul>
+
+            <p id="error"></p>
 
             <p id="contadorDeTarefas"></p>
         </div>
