@@ -11,12 +11,24 @@ botaoAdicionarTarefa.addEventListener("click", function () {
     } else {
         mensagemErro.textContent = ""
         const tarefa = document.createElement("li")
-        tarefa.textContent = inputTarefa.value
 
-        tarefa.addEventListener("click", function() {
-        tarefa.classList.toggle("concluida")
+        const textoTarefa = document.createElement("span")
+        textoTarefa.textContent = inputTarefa.value
+        textoTarefa.style.cursor = "pointer"
+
+        const botaoExcluir = document.createElement("button")
+        botaoExcluir.textContent = "Remover"
+
+        textoTarefa.addEventListener("click", function() {
+        textoTarefa.classList.toggle("concluida")
     })
 
+        botaoExcluir.addEventListener("click", function() {
+            tarefa.remove()
+        })
+
+        tarefa.appendChild(textoTarefa)
+        tarefa.appendChild(botaoExcluir)
         listaTarefas.appendChild(tarefa)
 
         tarefas.push(inputTarefa.value)
