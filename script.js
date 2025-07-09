@@ -6,6 +6,7 @@ const contadorDeTarefas = document.getElementById("contadorDeTarefas")
 const contadorPendentes = document.getElementById("contadorPendentes")
 const contadorConcluidas = document.getElementById("contadorConcluidas")
 const selectTarefas = document.getElementById("selectTarefas")
+const filtro = document.getElementById("filtro")
 
 let tarefas = []
 
@@ -28,6 +29,14 @@ function atualizarContador() {
     contadorPendentes.textContent = `Tarefas pendentes: ${pendentes}`
     contadorConcluidas.textContent = `Tarefas Concluídas: ${concluidas}`
 }
+
+    function atualizarVisibilidadeFiltro() {
+        if (tarefas.length === 0) {
+            selectTarefas.style.display = "none"
+        } else {
+            selectTarefas.style.display = "flex"
+        }
+    }
 
     function aplicarFiltro() {
     const filtro = selectTarefas.value;
@@ -72,13 +81,15 @@ botaoAdicionarTarefa.addEventListener("click", function () {
 
         textoTarefa.addEventListener("click", function() {
         textoTarefa.classList.toggle("concluida")
+        atualizarVisibilidadeFiltro();
         aplicarFiltro();
-        atualizarContador(g)
+        atualizarContador()
     })
 
         botaoExcluir.addEventListener("click", function() {
             tarefa.remove()
             tarefas = tarefas.filter(t => t.id != tarefa.dataset.id)
+            atualizarVisibilidadeFiltro();
             aplicarFiltro();
             atualizarContador()
         })
@@ -88,6 +99,7 @@ botaoAdicionarTarefa.addEventListener("click", function () {
         listaTarefas.appendChild(tarefa)
 
         tarefas.push(novaTarefa)
+        atualizarVisibilidadeFiltro();
         aplicarFiltro();
         atualizarContador()
         inputTarefa.value = ""

@@ -11,7 +11,6 @@
     color: green;
 }
 
-.pendente {
-    text-decoration: none;
-    color: black;
+#selectTarefas {
+    display: none;
 }
