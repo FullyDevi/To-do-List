@@ -3,8 +3,34 @@ const botaoAdicionarTarefa = document.getElementById("botaoAdicionarTarefa")
 const listaTarefas = document.getElementById("listaTarefas")
 const mensagemErro = document.getElementById("error")
 const contadorDeTarefas = document.getElementById("contadorDeTarefas")
+const selectTarefas = document.getElementById("selectTarefas")
 
 let tarefas = []
+
+function atualizarContador() {
+    contadorDeTarefas.textContent = `Total de tarefas: ${tarefas.length}`
+}
+
+    function aplicarFiltro() {
+    const filtro = selectTarefas.value;
+    const tarefasDOM = document.querySelectorAll("#listaTarefas li");
+
+    tarefasDOM.forEach((tarefa) => {
+        const span = tarefa.querySelector("span");
+        const estaConcluida = span.classList.contains("concluida");
+
+        if (filtro === "todas") {
+            tarefa.style.display = "flex";
+        } else if (filtro === "concluida" && estaConcluida) {
+            tarefa.style.display = "flex";
+        } else if (filtro === "pendente" && !estaConcluida) {
+            tarefa.style.display = "flex";
+        } else {
+            tarefa.style.display = "none";
+        }
+    });
+}
+    selectTarefas.addEventListener("change", aplicarFiltro)
 
 botaoAdicionarTarefa.addEventListener("click", function () {
     if (inputTarefa.value == "") {
@@ -28,11 +54,13 @@ botaoAdicionarTarefa.addEventListener("click", function () {
 
         textoTarefa.addEventListener("click", function() {
         textoTarefa.classList.toggle("concluida")
+        aplicarFiltro();
     })
 
         botaoExcluir.addEventListener("click", function() {
             tarefa.remove()
             tarefas = tarefas.filter(t => t.id != tarefa.dataset.id)
+            aplicarFiltro();
             atualizarContador()
         })
 
@@ -41,11 +69,8 @@ botaoAdicionarTarefa.addEventListener("click", function () {
         listaTarefas.appendChild(tarefa)
 
         tarefas.push(novaTarefa)
+        aplicarFiltro();
         atualizarContador()
         inputTarefa.value = ""
     }
 })
-
-function atualizarContador() {
-    contadorDeTarefas.textContent = `Total de tarefas: ${tarefas.length}`
-}

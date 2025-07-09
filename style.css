@@ -10,3 +10,8 @@
     text-decoration: line-through;
     color: green;
 }
+
+.pendente {
+    text-decoration: none;
+    color: black;
+}
