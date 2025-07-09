@@ -3,12 +3,30 @@ const botaoAdicionarTarefa = document.getElementById("botaoAdicionarTarefa")
 const listaTarefas = document.getElementById("listaTarefas")
 const mensagemErro = document.getElementById("error")
 const contadorDeTarefas = document.getElementById("contadorDeTarefas")
+const contadorPendentes = document.getElementById("contadorPendentes")
+const contadorConcluidas = document.getElementById("contadorConcluidas")
 const selectTarefas = document.getElementById("selectTarefas")
 
 let tarefas = []
 
 function atualizarContador() {
+    const total = tarefas.length
+    let pendentes = 0
+    let concluidas = 0
+
+    const tarefasDOM = document.querySelectorAll("#listaTarefas li")
+
+    tarefasDOM.forEach((tarefa) => {
+        const span = tarefa.querySelector("span")
+        if (span.classList.contains("concluida")) {
+            concluidas++
+        } else {
+            pendentes++
+        }
+    })
     contadorDeTarefas.textContent = `Total de tarefas: ${tarefas.length}`
+    contadorPendentes.textContent = `Tarefas pendentes: ${pendentes}`
+    contadorConcluidas.textContent = `Tarefas Concluídas: ${concluidas}`
 }
 
     function aplicarFiltro() {
@@ -55,6 +73,7 @@ botaoAdicionarTarefa.addEventListener("click", function () {
         textoTarefa.addEventListener("click", function() {
         textoTarefa.classList.toggle("concluida")
         aplicarFiltro();
+        atualizarContador(g)
     })
 
         botaoExcluir.addEventListener("click", function() {
