@@ -32,8 +32,10 @@ function atualizarContador() {
 
     function atualizarVisibilidadeFiltro() {
         if (tarefas.length === 0) {
+            filtro.style.display = "none"
             selectTarefas.style.display = "none"
         } else {
+            filtro.style.display = "flex"
             selectTarefas.style.display = "flex"
         }
     }
